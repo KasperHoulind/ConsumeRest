@@ -56,6 +56,27 @@ namespace ModelLibrary
         }
 
 
+        // tjekker for om to objekter er ens 
+        protected bool Equals(RestData other)
+        {
+            return _userid == other._userid && _id == other._id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((RestData) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (_userid * 397) ^ _id;
+            }
+        }
     }
 
 
